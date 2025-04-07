@@ -1,1 +1,39 @@
+# Test Notes - Automatic Fan Control using Arduino
+
+Date: April 7, 2025
+Project: Automatic Fan Control with LM35
+Tested By: Damaraparapu Anideep
+
+-------------------------------
+# Hardware Test Checklist:
+-------------------------------
+
+[✓] Arduino Uno connected properly
+[✓] LM35 sensor gives correct voltage output
+[✓] Fan connected to transistor via PWM pin (D9)
+[✓] Flyback diode protects transistor from back EMF
+[✓] Serial Monitor outputs temperature values
+
+-------------------------------
+# Test Results:
+-------------------------------
+
+- Temp = 24.5°C → Fan OFF 
+- Temp = 27.2°C → Fan at medium speed (PWM = 128) 
+- Temp = 32.6°C → Fan at full speed (PWM = 255) 
+
+-------------------------------
+# Observations & Debug Notes:
+-------------------------------
+
+- Initial fan didn't spin at medium PWM (solved by using 12V fan with external power)
+- Temperature readings were stable and accurate (±0.5°C)
+- Serial output helped with real-time debugging
+
+-------------------------------
+# Final Verdict:
+-------------------------------
+
+# All tests passed. System behaves as expected.
+
 
