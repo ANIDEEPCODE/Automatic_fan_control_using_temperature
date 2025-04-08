@@ -1,90 +1,79 @@
-# 🌬️ Automatic Fan Control using LM35 and Arduino
+# 🌡️ Automatic Fan Control System using Arduino
 
-This project automatically controls the speed of a fan based on the surrounding temperature using an LM35 temperature sensor and Arduino.
+A smart embedded system project that automatically controls a fan based on ambient temperature using an LM35 temperature sensor and Arduino UNO.
 
----
-
-## 📌 Features
-
-- Real-time temperature monitoring using LM35
-- Automatic fan speed control using PWM
-- Serial output for temperature logs
-- Simple and efficient embedded system design
+> 📌 **Project Type**: Embedded Systems | Arduino  
+> 🧠 **Skills Used**: C Programming, Analog Sensor Input, PWM Output, Real-Time Control
 
 ---
 
-## 🧰 Components Used
+## 🛠️ Components Used
 
-| Component       | Description                |
-|----------------|----------------------------|
-| Arduino Uno     | Microcontroller board       |
-| LM35 Sensor     | Analog temperature sensor   |
-| DC Fan          | Controlled by transistor    |
-| NPN Transistor  | Acts as a switch (e.g., BC547) |
-| Flyback Diode   | Protects from voltage spikes |
-| Resistors, wires | Breadboard and jumper wires |
-
----
-
-## ⚙️ Working Principle
-
-- LM35 outputs 10mV per °C.
-- Arduino reads the analog voltage → converts to temperature.
-- Based on temperature:
-  - **< 25°C** → Fan OFF
-  - **25–30°C** → Fan at half speed
-  - **> 30°C** → Fan at full speed
+- Arduino UNO
+- LM35 Temperature Sensor
+- DC Fan (or LED to simulate)
+- Transistor (e.g., BC547)
+- Resistors
+- Power Supply
+- Breadboard & Jumper Wires
 
 ---
 
-## 🔌 Circuit Diagram
+## 🔧 Working Principle
 
-![Circuit Diagram](docs/circuit_diagram.png)
-
-> Note: Use a transistor to safely drive the fan from Arduino's PWM pin.
+1. LM35 senses the ambient temperature.
+2. Arduino reads temperature via analog pin.
+3. Based on predefined thresholds, it controls the fan speed using PWM.
+4. Real-time adjustment ensures efficient cooling.
 
 ---
 
-## 🧠 Code Logic (main.ino)
+## 📸 Circuit Diagram
 
-```cpp
-const int lm35Pin = A0;
-const int fanPin = 9;
+![circuit diagram](circuit_diagram.png.png)
 
-void setup() {
-  pinMode(fanPin, OUTPUT);
-  Serial.begin(9600);
-}
+---
 
-void loop() {
-  int analogValue = analogRead(lm35Pin);
-  float tempC = analogValue * (5.0 / 1023.0) * 100;
+## 📂 File Structure
 
-  Serial.print("Temp: ");
-  Serial.print(tempC);
-  Serial.println(" °C");
+Automatic-Fan-Control/ ├── docs/ │ └── circuit_diagram.png └── project_description.md ├── src └──  main.c ├── test_notes.txt ├── README.md
 
-  if (tempC < 25) {
-    analogWrite(fanPin, 0); // Fan OFF
-  } else if (tempC >= 25 && tempC <= 30) {
-    analogWrite(fanPin, 128); // Medium speed
-  } else {
-    analogWrite(fanPin, 255); // Full speed
-  }
+---
 
-  delay(1000); // 1 second delay
-}
+## 🧪 Testing Notes
 
-🚀 How to Run
-*Connect the LM35 sensor to A0.
-*Connect a transistor + fan to pin D9.
-*Upload the code using Arduino IDE.
-*Open Serial Monitor to see the temperature log
-*Fan speed adjusts automatically with temp changes.
+See [`test_notes.txt`](./test_notes.txt) for test values and behavior under different temperature inputs.
 
-📬 Contact
-Damaraparapu Anideep
-🔗 GitHub: ANIDEEPCODE
-📧 Email: damaraparapuanideep@gmail.com
+---
 
+## ✨ Features
 
+- Real-time fan speed control
+- Clean analog to digital conversion
+- Easy to scale and modify
+- Simple and low-cost hardware
+
+---
+
+## 📚 Project Description
+
+Read more details in [`Project_description.md`](project_description.md)
+
+---
+
+## 🚀 Future Improvements
+
+- Add LCD to show temperature and fan status
+- Add button-based manual override
+- Use a servo motor to control fan vent direction
+
+---
+
+## 🙋‍♂️ Author
+
+**Damaraparapu Anideep**  
+🔗 [GitHub](https://github.com/ANIDEEPCODE) | [LinkedIn](https://www.linkedin.com/in/damaraparapu-anideep-370638241)
+
+---
+
+⭐ If you liked this project, don’t forget to star the repo!
